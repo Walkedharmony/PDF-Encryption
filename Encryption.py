@@ -23,23 +23,23 @@ def encrypt_file(input_file, output_file, key):
     with open(output_file, 'wb') as f:
         f.write(ciphertext)
     
-    print(f"File {input_file} encrypted successfully to {output_file}")
+    print(f"File {input_file} berhasil dienkripsi ke {output_file}")
 
 def get_key_manual():
-    key_input = input("Enter the 32-byte key in hexadecimal (64 characters) or as bytes: ")
+    key_input = input("Masukkan kunci 32-byte dalam heksadesimal (64 karakter) atau sebagai byte: ")
     
     try:
-        # Try to interpret the input as hexadecimal
+     
         key = bytes.fromhex(key_input)
     except ValueError:
-        # If that fails, treat the input as a direct byte string
+   
         key = key_input.encode('utf-8')
 
     if len(key) != 32:
-        raise ValueError("Invalid key length. Key must be 32 bytes.")
+        raise ValueError("Panjang kunci tidak valid. Kunci harus sepanjang 32 byte.")
     
     key_hex = key.hex()
-    print(f"The key entered is: {key_hex}")
+    print(f"Kunci yang dimasukkan adalah: {key_hex}")
     return key
 
 def generate_key_from_file():
@@ -66,7 +66,7 @@ def save_key_to_json(input_filename, encrypted_filename, key):
             json.dump([key_data], file, indent=4)
 
 def choose_key_method():
-    choice = input("Do you want to input the key manually? (yes/no): ").strip().lower()
+    choice = input("Apakah Anda ingin memasukkan kunci secara manual? (yes/no): ").strip().lower()
     if choice == 'yes':
         return get_key_manual()
     else:
@@ -74,7 +74,7 @@ def choose_key_method():
 
 def encrypt_action():
     root = Tk()
-    root.withdraw()  # Hide the main window
+    root.withdraw()  
 
     input_file = filedialog.askopenfilename(title="Select the PDF file to encrypt", filetypes=[("PDF files", "*.pdf")])
     if not input_file:
